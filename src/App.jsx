@@ -1,7 +1,7 @@
 import './App.css';
 
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
     AppstoreOutlined,
     BarChartOutlined,
@@ -37,9 +37,29 @@ const siderStyle = {
 
 const items = [
     {
-        key: String( 1),
+        key: "context-decision",
         icon: React.createElement(CloudOutlined),
         label: `Context-Decision`,
+    },
+    {
+        key: "software-all",
+        icon: React.createElement(CloudOutlined),
+        label: `Software All`,
+    },
+    {
+        key: "software-equities",
+        icon: React.createElement(CloudOutlined),
+        label: `Software Equities`,
+    },
+    {
+        key: "software-assets",
+        icon: React.createElement(CloudOutlined),
+        label: `Software Assets`,
+    },
+    {
+        key: "software-liabilities",
+        icon: React.createElement(CloudOutlined),
+        label: `Software Liabilities`,
     }
 ]
 
@@ -48,22 +68,53 @@ const App = () => {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
+    // 선택된 메뉴 상태 관리
+    const [selectedMenuItem, setSelectedMenuItem] = useState("context-decision");
+
+    // 선택된 메뉴에 따라 컨텐츠 변경
+    const renderContent = () => {
+        switch (selectedMenuItem) {
+            case "context-decision":
+                return <TechnicalContextDecisionTable />;
+            case "software-equities":
+                return <SoftwareEquitiesTable />;
+            case "software-assets":
+                return <SoftwareAssetsTable />;
+            case "software-liabilities":
+                return <SoftwareLiabilitiesTable />;
+            case "software-all":
+                return (
+                    <div style={{height:'100%'}}>
+                        <Splitter style={{ height: "100%"}}>
+                            <Splitter.Panel collapsible>
+                                <SoftwareAssetsTable />;
+                            </Splitter.Panel>
+                            <Splitter.Panel collapsible={{ start: true }}>
+                                 <SoftwareEquitiesTable />;
+                            </Splitter.Panel>
+                            <Splitter.Panel>
+                                <SoftwareLiabilitiesTable />;
+                            </Splitter.Panel>
+                        </Splitter>
+                    </div>
+                )
+            default:
+                return <TechnicalContextDecisionTable />;
+        }
+    };
+
+
     return (
         <Layout hasSider>
             <Sider style={siderStyle}>
                 <img src={logo} alt="Logo" width={200} />
                 <div className="demo-logo-vertical" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} onClick={(e) => setSelectedMenuItem(e.key)}/>
             </Sider>
             <Layout>
                 <Header style={{ padding: 0, background: colorBgContainer, textAlign: "right", paddingRight: "50px"}} >Software Accounting</Header>
                 <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-                    <SoftwareEquitiesTable></SoftwareEquitiesTable>
-
-                    <SoftwareAssetsTable></SoftwareAssetsTable>
-                    <SoftwareLiabilitiesTable></SoftwareLiabilitiesTable>
-
-                    <TechnicalContextDecisionTable></TechnicalContextDecisionTable>
+                    {renderContent()}
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
                     Ant Design ©{new Date().getFullYear()} Created by Ant UED

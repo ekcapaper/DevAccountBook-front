@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {Button, Form, Input, Popconfirm, Table, Typography} from 'antd';
+import {Button, Col, Form, Input, Popconfirm, Row, Table, Typography} from 'antd';
 import {
     useDeleteTechnicalAssociations,
     useCreateTechnicalAssociations,
@@ -221,19 +221,26 @@ const SoftwareEquitiesTable = () => {
     });
     return (
         <div>
-            <div
-                style={{textAlign: "right"}}
-            >
-                <Button
-                    onClick={handleAdd}
-                    type="primary"
-                    style={{
-                        marginBottom: 16,
-                    }}
-                >
-                    Add Row
-                </Button>
-            </div>
+            <Row>
+                <Col span={12}>
+                    <div style={{ padding: '20px', textAlign: 'left' }}>
+                        <strong>소프트웨어 자본</strong>
+                    </div>
+                </Col>
+                <Col span={12}>
+                    <div style={{ padding: '10px', textAlign: 'right' }}>
+                        <Button
+                            onClick={handleAdd}
+                            type="primary"
+                            style={{
+                                marginBottom: 16,
+                            }}
+                        >
+                            추가
+                        </Button>
+                    </div>
+                </Col>
+            </Row>
             <Table
                 components={components}
                 rowClassName={() => 'editable-row'}
