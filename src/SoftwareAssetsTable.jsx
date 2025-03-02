@@ -205,12 +205,12 @@ const SoftwareAssetsTable = () => {
         <div>
             <Row>
                 <Col span={12}>
-                    <div style={{ padding: '20px', textAlign: 'left' }}>
+                    <div style={{padding: '20px', textAlign: 'left'}}>
                         <strong>소프트웨어 자산</strong>
                     </div>
-                    </Col>
+                </Col>
                 <Col span={12}>
-                    <div style={{ padding: '10px', textAlign: 'right' }}>
+                    <div style={{padding: '10px', textAlign: 'right'}}>
                         <Button
                             onClick={handleAdd}
                             type="primary"

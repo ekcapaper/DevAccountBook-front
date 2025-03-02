@@ -1,9 +1,10 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {Button, Col, Form, Input, Popconfirm, Row, Table, Typography} from 'antd';
+import {Button, Col, Form, Popconfirm, Row, Table} from 'antd';
 import {
-    useDeleteTechnicalAssociations,
     useCreateTechnicalAssociations,
-    useUpdateTechnicalAssociations, useFetchTechnicalAssociations
+    useDeleteTechnicalAssociations,
+    useFetchTechnicalAssociations,
+    useUpdateTechnicalAssociations
 } from "./queryTechnicalAssociations.js";
 import TextArea from "antd/lib/input/TextArea.js";
 
@@ -66,13 +67,13 @@ const EditableCell = ({
         >
             {editable ? (
                 <Form.Item
-                    style={{ margin: 0, width: "100%", height: "100%"}}
+                    style={{margin: 0, width: "100%", height: "100%"}}
                     name={dataIndex}
                 >
                     <TextArea
                         ref={inputRef}
                         value={record[dataIndex]} // 기존 데이터 미리 채워줌
-                        autoSize={{ minRows: 1, maxRows: 4 }} // 입력 크기 제한
+                        autoSize={{minRows: 1, maxRows: 4}} // 입력 크기 제한
                         style={{
                             width: "100%", // 가로 너비 100%로 설정 (셀을 완전히 채움)
                             height: "100%", // 높이도 최대한 확장
@@ -218,12 +219,12 @@ const TechnicalContextDecisionTable = () => {
         <div>
             <Row>
                 <Col span={12}>
-                    <div style={{ padding: '20px', textAlign: 'left' }}>
+                    <div style={{padding: '20px', textAlign: 'left'}}>
                         <strong>기술적 정황 - 기술적 결정</strong>
                     </div>
                 </Col>
                 <Col span={12}>
-                    <div style={{ padding: '10px', textAlign: 'right' }}>
+                    <div style={{padding: '10px', textAlign: 'right'}}>
                         <Button
                             onClick={handleAdd}
                             type="primary"

@@ -2,18 +2,8 @@ import './App.css';
 
 
 import React, {useState} from 'react';
-import {
-    AppstoreOutlined,
-    BarChartOutlined,
-    CloudOutlined,
-    ShopOutlined,
-    TeamOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
-} from '@ant-design/icons';
-import {Splitter, Typography} from 'antd';
-import { Layout, Menu, theme } from 'antd';
+import {CloudOutlined,} from '@ant-design/icons';
+import {Layout, Menu, Splitter, theme} from 'antd';
 import logo from './assets/react.svg';
 import TechnicalContextDecisionTable from "./TechnicalContextDecisionTable.jsx";
 import SoftwareLiabilitiesTable from "./SoftwareLiabilitiesTable.jsx";
@@ -21,7 +11,7 @@ import SoftwareAssetsTable from "./SoftwareAssetsTable.jsx";
 import SoftwareEquitiesTable from "./SoftwareEquitiesTable.jsx";
 
 
-const { Header, Content, Footer, Sider } = Layout;
+const {Header, Content, Footer, Sider} = Layout;
 
 
 const siderStyle = {
@@ -65,7 +55,7 @@ const items = [
 
 const App = () => {
     const {
-        token: { colorBgContainer, borderRadiusLG },
+        token: {colorBgContainer, borderRadiusLG},
     } = theme.useToken();
 
     // 선택된 메뉴 상태 관리
@@ -75,31 +65,31 @@ const App = () => {
     const renderContent = () => {
         switch (selectedMenuItem) {
             case "context-decision":
-                return <TechnicalContextDecisionTable />;
+                return <TechnicalContextDecisionTable/>;
             case "software-equities":
-                return <SoftwareEquitiesTable />;
+                return <SoftwareEquitiesTable/>;
             case "software-assets":
-                return <SoftwareAssetsTable />;
+                return <SoftwareAssetsTable/>;
             case "software-liabilities":
-                return <SoftwareLiabilitiesTable />;
+                return <SoftwareLiabilitiesTable/>;
             case "software-all":
                 return (
-                    <div style={{height:'100%'}}>
-                        <Splitter style={{ height: "100%"}}>
+                    <div style={{height: '100%'}}>
+                        <Splitter style={{height: "100%"}}>
                             <Splitter.Panel collapsible>
-                                <SoftwareAssetsTable />;
+                                <SoftwareAssetsTable/>;
                             </Splitter.Panel>
-                            <Splitter.Panel collapsible={{ start: true }}>
-                                 <SoftwareEquitiesTable />;
+                            <Splitter.Panel collapsible={{start: true}}>
+                                <SoftwareEquitiesTable/>;
                             </Splitter.Panel>
                             <Splitter.Panel>
-                                <SoftwareLiabilitiesTable />;
+                                <SoftwareLiabilitiesTable/>;
                             </Splitter.Panel>
                         </Splitter>
                     </div>
                 )
             default:
-                return <TechnicalContextDecisionTable />;
+                return <TechnicalContextDecisionTable/>;
         }
     };
 
@@ -107,16 +97,18 @@ const App = () => {
     return (
         <Layout hasSider>
             <Sider style={siderStyle}>
-                <img src={logo} alt="Logo" width={200} />
-                <div className="demo-logo-vertical" />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} onClick={(e) => setSelectedMenuItem(e.key)}/>
+                <img src={logo} alt="Logo" width={200}/>
+                <div className="demo-logo-vertical"/>
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items}
+                      onClick={(e) => setSelectedMenuItem(e.key)}/>
             </Sider>
             <Layout>
-                <Header style={{ padding: 0, background: colorBgContainer, textAlign: "right", paddingRight: "50px"}} >Software Accounting</Header>
-                <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+                <Header style={{padding: 0, background: colorBgContainer, textAlign: "right", paddingRight: "50px"}}>Software
+                    Accounting</Header>
+                <Content style={{margin: '24px 16px 0', overflow: 'initial'}}>
                     {renderContent()}
                 </Content>
-                <Footer style={{ textAlign: 'center' }}>
+                <Footer style={{textAlign: 'center'}}>
                     Ant Design ©{new Date().getFullYear()} Created by Ant UED
                 </Footer>
             </Layout>

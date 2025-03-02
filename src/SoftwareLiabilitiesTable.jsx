@@ -1,15 +1,11 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {Button, Col, Form, Input, Popconfirm, Row, Table, Typography} from 'antd';
-import {
-    useDeleteTechnicalAssociations,
-    useCreateTechnicalAssociations,
-    useUpdateTechnicalAssociations, useFetchTechnicalAssociations
-} from "./queryTechnicalAssociations.js";
+import {Button, Col, Form, Popconfirm, Row, Table} from 'antd';
 import TextArea from "antd/lib/input/TextArea.js";
 import {
     useCreateSoftwareLiabilities,
     useDeleteSoftwareLiabilities,
-    useFetchSoftwareLiabilities, useUpdateSoftwareLiabilities
+    useFetchSoftwareLiabilities,
+    useUpdateSoftwareLiabilities
 } from "./querySoftwareLiabilities.js";
 
 const EditableContext = React.createContext(null);
@@ -73,13 +69,13 @@ const EditableCell = ({
         >
             {editable ? (
                 <Form.Item
-                    style={{ margin: 0, width: "100%", height: "100%"}}
+                    style={{margin: 0, width: "100%", height: "100%"}}
                     name={dataIndex}
                 >
                     <TextArea
                         ref={inputRef}
                         value={record[dataIndex]} // 기존 데이터 미리 채워줌
-                        autoSize={{ minRows: 1, maxRows: 4 }} // 입력 크기 제한
+                        autoSize={{minRows: 1, maxRows: 4}} // 입력 크기 제한
                         style={{
                             width: "100%", // 가로 너비 100%로 설정 (셀을 완전히 채움)
                             height: "100%", // 높이도 최대한 확장
@@ -97,8 +93,6 @@ const EditableCell = ({
         </td>
     );
 };
-
-
 
 
 const SoftwareLiabilitiesTable = () => {
@@ -211,12 +205,12 @@ const SoftwareLiabilitiesTable = () => {
         <div>
             <Row>
                 <Col span={12}>
-                    <div style={{ padding: '20px', textAlign: 'left' }}>
+                    <div style={{padding: '20px', textAlign: 'left'}}>
                         <strong>소프트웨어 부채</strong>
                     </div>
                 </Col>
                 <Col span={12}>
-                    <div style={{ padding: '10px', textAlign: 'right' }}>
+                    <div style={{padding: '10px', textAlign: 'right'}}>
                         <Button
                             onClick={handleAdd}
                             type="primary"
