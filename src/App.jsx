@@ -16,6 +16,9 @@ import {Splitter, Typography} from 'antd';
 import { Layout, Menu, theme } from 'antd';
 import logo from './assets/react.svg';
 import TechnicalContextDecisionTable from "./TechnicalContextDecisionTable.jsx";
+import SoftwareLiabilitiesTable from "./SoftwareLiabilitiesTable.jsx";
+import SoftwareAssetsTable from "./SoftwareAssetsTable.jsx";
+import SoftwareEquitiesTable from "./SoftwareEquitiesTable.jsx";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -55,6 +58,11 @@ const App = () => {
             <Layout>
                 <Header style={{ padding: 0, background: colorBgContainer, textAlign: "right", paddingRight: "50px"}} >Software Accounting</Header>
                 <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+                    <SoftwareEquitiesTable></SoftwareEquitiesTable>
+
+                    <SoftwareAssetsTable></SoftwareAssetsTable>
+                    <SoftwareLiabilitiesTable></SoftwareLiabilitiesTable>
+
                     <TechnicalContextDecisionTable></TechnicalContextDecisionTable>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>

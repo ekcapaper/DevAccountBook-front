@@ -6,6 +6,11 @@ import {
     useUpdateTechnicalAssociations, useFetchTechnicalAssociations
 } from "./queryTechnicalAssociations.js";
 import TextArea from "antd/lib/input/TextArea.js";
+import {
+    useCreateSoftwareLiabilities,
+    useDeleteSoftwareLiabilities,
+    useFetchSoftwareLiabilities, useUpdateSoftwareLiabilities
+} from "./querySoftwareLiabilities.js";
 
 const EditableContext = React.createContext(null);
 const EditableRow = ({index, ...props}) => {
@@ -18,6 +23,8 @@ const EditableRow = ({index, ...props}) => {
         </Form>
     );
 };
+
+
 const EditableCell = ({
                           title,
                           editable,
@@ -90,16 +97,18 @@ const EditableCell = ({
         </td>
     );
 };
-const TechnicalContextDecisionTable = () => {
-    const {data, isLoading, isError} = useFetchTechnicalAssociations();
+
+
+
+
+const SoftwareLiabilitiesTable = () => {
+    const {data, isLoading, isError} = useFetchSoftwareLiabilities();
 
     const [dataSource, setDataSource] = useState([
         {
             id: '0',
-            technicalContextName: 'string-1',
-            technicalContextDescription: 'string-1',
-            technicalDecisionName: 'string-2',
-            technicalDecisionDescription: 'string-2'
+            name: 'string-1',
+            description: 'string-1',
         },
     ]);
 
@@ -107,18 +116,16 @@ const TechnicalContextDecisionTable = () => {
         if (data && !isLoading && !isError) {
             const dataSourceNew = data.map(item => ({
                 id: item.id,
-                technicalContextName: item.technicalContextDTO.name,
-                technicalContextDescription: item.technicalContextDTO.description,
-                technicalDecisionName: item.technicalDecisionDTO.name,
-                technicalDecisionDescription: item.technicalDecisionDTO.description,
+                name: item.name,
+                description: item.description
             }))
             setDataSource(dataSourceNew);
         }
     }, [data, isLoading, isError]);
 
-    const mutationPost = useCreateTechnicalAssociations()
-    const mutationDelete = useDeleteTechnicalAssociations()
-    const mutationPut = useUpdateTechnicalAssociations()
+    const mutationPost = useCreateSoftwareLiabilities()
+    const mutationDelete = useDeleteSoftwareLiabilities()
+    const mutationPut = useUpdateSoftwareLiabilities()
 
     const handleDelete = (id) => {
         mutationDelete.mutate(id)
@@ -126,10 +133,8 @@ const TechnicalContextDecisionTable = () => {
 
     const handleAdd = () => {
         const newData = {
-            technicalContextName: 'string-1',
-            technicalContextDescription: 'string-1',
-            technicalDecisionName: 'string-2',
-            technicalDecisionDescription: 'string-2'
+            name: 'string-1',
+            description: 'string-1',
         };
         mutationPost.mutate(newData);
     };
@@ -158,26 +163,14 @@ const TechnicalContextDecisionTable = () => {
             editable: false,
         },
         {
-            title: 'technicalContextName',
-            dataIndex: 'technicalContextName',
+            title: 'name',
+            dataIndex: 'name',
             width: '30%',
             editable: true,
         },
         {
-            title: 'technicalContextDescription',
-            dataIndex: 'technicalContextDescription',
-            width: '30%',
-            editable: true,
-        },
-        {
-            title: 'technicalDecisionName',
-            dataIndex: 'technicalDecisionName',
-            width: '30%',
-            editable: true,
-        },
-        {
-            title: 'technicalDecisionDescription',
-            dataIndex: 'technicalDecisionDescription',
+            title: 'description',
+            dataIndex: 'description',
             width: '30%',
             editable: true,
         },
@@ -240,4 +233,4 @@ const TechnicalContextDecisionTable = () => {
         </div>
     );
 };
-export default TechnicalContextDecisionTable;
+export default SoftwareLiabilitiesTable;
