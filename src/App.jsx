@@ -9,7 +9,7 @@ import TechnicalContextDecisionTable from "./TechnicalContextDecisionTable.jsx";
 import SoftwareLiabilitiesTable from "./SoftwareLiabilitiesTable.jsx";
 import SoftwareAssetsTable from "./SoftwareAssetsTable.jsx";
 import SoftwareEquitiesTable from "./SoftwareEquitiesTable.jsx";
-
+import SoftwareMetricTable from "./SoftwareMetricTable.jsx";
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -50,6 +50,11 @@ const items = [
         key: "software-liabilities",
         icon: React.createElement(CloudOutlined),
         label: `Software Liabilities`,
+    },
+    {
+        key: "software-metrics",
+        icon: React.createElement(CloudOutlined),
+        label: `Software Metrics`,
     }
 ]
 
@@ -88,6 +93,8 @@ const App = () => {
                         </Splitter>
                     </div>
                 )
+            case "software-metrics":
+                return <SoftwareMetricTable/>
             default:
                 return <TechnicalContextDecisionTable/>;
         }
