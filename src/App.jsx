@@ -10,6 +10,9 @@ import SoftwareLiabilitiesTable from "./SoftwareLiabilitiesTable.jsx";
 import SoftwareAssetsTable from "./SoftwareAssetsTable.jsx";
 import SoftwareEquitiesTable from "./SoftwareEquitiesTable.jsx";
 import SoftwareMetricTable from "./SoftwareMetricTable.jsx";
+import SoftwareRaw from "./SoftwareRaw.jsx";
+import SoftwareRawMarkdown from "./SoftwareRawMarkdown.jsx";
+import SoftwareExternalTable from "./SoftwareExternalTable.jsx";
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -26,6 +29,16 @@ const siderStyle = {
 };
 
 const items = [
+    {
+        key: "software-raw",
+        icon: React.createElement(CloudOutlined),
+        label: `Software Raw`,
+    },
+    {
+        key: "software-markdown",
+        icon: React.createElement(CloudOutlined),
+        label: `Software Markdown`,
+    },
     {
         key: "context-decision",
         icon: React.createElement(CloudOutlined),
@@ -55,6 +68,11 @@ const items = [
         key: "software-metrics",
         icon: React.createElement(CloudOutlined),
         label: `Software Metrics`,
+    },
+    {
+        key: "software-externals",
+        icon: React.createElement(CloudOutlined),
+        label: `Software externals`,
     }
 ]
 
@@ -64,7 +82,7 @@ const App = () => {
     } = theme.useToken();
 
     // 선택된 메뉴 상태 관리
-    const [selectedMenuItem, setSelectedMenuItem] = useState("context-decision");
+    const [selectedMenuItem, setSelectedMenuItem] = useState("software-raw");
 
     // 선택된 메뉴에 따라 컨텐츠 변경
     const renderContent = () => {
@@ -95,8 +113,14 @@ const App = () => {
                 )
             case "software-metrics":
                 return <SoftwareMetricTable/>
+            case "software-raw":
+                return <SoftwareRaw></SoftwareRaw>
+            case "software-markdown":
+                return <SoftwareRawMarkdown></SoftwareRawMarkdown>
+            case "software-externals":
+                return <SoftwareExternalTable/>
             default:
-                return <TechnicalContextDecisionTable/>;
+                return <SoftwareRaw/>;
         }
     };
 
@@ -112,7 +136,7 @@ const App = () => {
             <Layout>
                 <Header style={{padding: 0, background: colorBgContainer, textAlign: "right", paddingRight: "50px"}}>Software
                     Accounting</Header>
-                <Content style={{margin: '24px 16px 0', overflow: 'initial'}}>
+                <Content style={{margin: '24px 16px 0', overflow: 'auto'}}>
                     {renderContent()}
                 </Content>
                 <Footer style={{textAlign: 'center'}}>

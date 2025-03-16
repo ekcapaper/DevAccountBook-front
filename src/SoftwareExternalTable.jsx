@@ -2,19 +2,19 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import {Button, Col, Form, Popconfirm, Row, Table} from 'antd';
 import TextArea from "antd/lib/input/TextArea.js";
 import {
-    useCreateSoftwareEquities,
-    useDeleteSoftwareEquities,
-    useFetchSoftwareEquities,
-    useUpdateSoftwareEquities
-} from "./querySoftwareEquity.js";
+    useCreateSoftwareExternals,
+    useDeleteSoftwareExternals,
+    useFetchSoftwareExternals,
+    useUpdateSoftwareExternals
+} from "./querySoftwareExternal.js";
 
 import {
     EditableRow, EditableCell
 } from "./EditableCell.jsx";
 
 
-const SoftwareEquitiesTable = () => {
-    const {data, isLoading, isError} = useFetchSoftwareEquities();
+const SoftwareAssetsTable = () => {
+    const {data, isLoading, isError} = useFetchSoftwareExternals();
 
     const [dataSource, setDataSource] = useState([
         {
@@ -35,9 +35,9 @@ const SoftwareEquitiesTable = () => {
         }
     }, [data, isLoading, isError]);
 
-    const mutationPost = useCreateSoftwareEquities()
-    const mutationDelete = useDeleteSoftwareEquities()
-    const mutationPut = useUpdateSoftwareEquities()
+    const mutationPost = useCreateSoftwareExternals()
+    const mutationDelete = useDeleteSoftwareExternals()
+    const mutationPut = useUpdateSoftwareExternals()
 
     const handleDelete = (id) => {
         mutationDelete.mutate(id)
@@ -124,7 +124,7 @@ const SoftwareEquitiesTable = () => {
             <Row>
                 <Col span={12}>
                     <div style={{padding: '20px', textAlign: 'left'}}>
-                        <strong>소프트웨어 자본</strong>
+                        <strong>소프트웨어 외부 자료</strong>
                     </div>
                 </Col>
                 <Col span={12}>
@@ -141,6 +141,7 @@ const SoftwareEquitiesTable = () => {
                     </div>
                 </Col>
             </Row>
+
             <Table
                 components={components}
                 rowClassName={() => 'editable-row'}
@@ -152,4 +153,4 @@ const SoftwareEquitiesTable = () => {
         </div>
     );
 };
-export default SoftwareEquitiesTable;
+export default SoftwareAssetsTable;
